@@ -1,4 +1,4 @@
-import { h } from "/web_modules/hyperapp.js"
+import { h } from "hyperapp"
 import { get } from "./lens"
 
 const isNil = (x: any): boolean => {

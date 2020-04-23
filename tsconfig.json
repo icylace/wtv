@@ -1,10 +1,12 @@
+// https://www.typescriptlang.org/v2/en/tsconfig
 // https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 // https://www.typescriptlang.org/docs/handbook/compiler-options.html
+// https://github.com/pikapkg/snowpack/issues/4#issuecomment-529144878
 // $ npx tsc --init
 
 {
   "include": ["./src/**/*.ts", "./types/*.d.ts"],
-  "exclude": ["./dist", "./transpiled", "node_modules", "web_modules"],
+  "exclude": ["./dist", "./output", "node_modules", "web_modules"],
   "compilerOptions": {
     /* Basic Options */
     "incremental": true,                      /* Enable incremental compilation */
@@ -17,13 +19,13 @@
     "allowJs": true,                          /* Allow javascript files to be compiled. */
     // "checkJs": true,                       /* Report errors in .js files. */
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
-    // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
+    "declaration": true,                      /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
+    "sourceMap": true,                        /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
     // "outDir": "./",                        /* Redirect output structure to the directory. */
     // "outDir": "./dist",
-    "outDir": "./transpiled",
+    "outDir": "./output/typescript",
     // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
@@ -54,7 +56,7 @@
     "baseUrl": "./",                          /* Base directory to resolve non-absolute module names. */
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     "paths": {
-      "/web_modules/*": [
+      "/web_modules/*.js": [
         "./node_modules/@types/*",
         "./node_modules/*",
         "./web_modules/*.js"

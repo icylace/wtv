@@ -38,7 +38,7 @@ task:_build:dev:bundle() {
 # ------------------------------------------------------------------------------
 
 task:_build:prod:bundle() {
-  npx rollup --config --env prod
+  npx rollup --config --environment prod
   task:_snowpack
   cp ./output/rollup/* ./dist
 }
@@ -136,6 +136,13 @@ task:prepare() {
   echo
   echo "Preparing web modules..."
   npx snowpack
+}
+
+# ------------------------------------------------------------------------------
+
+task:test() {
+  # TODO:
+  "test": "echo \"Error: no test specified\" && exit 1",
 }
 
 # ------------------------------------------------------------------------------

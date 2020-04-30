@@ -3,7 +3,7 @@
 # Generated files suitable for public distribution.
 dist/
 
-# CLI tool output.
+# Tool output.
 output/
 
 # ------------------------------------------------------------------------------

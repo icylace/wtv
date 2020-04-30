@@ -8,7 +8,7 @@ const delist = (key: string) => (xr: any): any => {
 }
 
 const hasOwn = (prop: string) => (obj: any): boolean => {
-  return Object.prototype.hasOwnProperty.call(obj, prop)
+  return Object.prototype.hasOwnProperty.call (obj, prop)
 }
 
 const merge = (xr: any) => (yr: any): any => {

@@ -16,12 +16,12 @@ const readoutReplacer = (_key: any, value: any): any => {
 }
 
 const dump = (x: any): string => {
-  return JSON.stringify(x, readoutReplacer, 2)
+  return JSON.stringify (x, readoutReplacer, 2)
 }
 
 const readout = (path: string[]) => (obj: object): any => {
-  const json = JSON.stringify(get(path)(obj), readoutReplacer, 2)
-  return h("pre", {}, [`${path.join(".")}: ${json}`])
+  const json = JSON.stringify (get (path) (obj), readoutReplacer, 2)
+  return h ("pre", {}, [`${path.join (".")}: ${json}`])
 }
 
 // -----------------------------------------------------------------------------

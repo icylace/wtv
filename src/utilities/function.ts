@@ -2,7 +2,7 @@
 
 // Kestrel
 // always :: a -> b -> a
-const always = (x: any) => (_: any): any => {
+const always = <T, U>(x: T) => (_: U): T => {
   return x
 }
 
@@ -20,7 +20,7 @@ const compose2 = (f: (a: any) => any) => (g: (c: any) => (d: any) => any) => (x:
 
 // Idiot
 // identity :: a -> a
-const identity = (x: any): any => {
+const identity = <T>(x: T): T => {
   return x
 }
 
@@ -42,7 +42,7 @@ const ifThen = (f: (a: any) => boolean) => (g: (a: any) => any) => (x: any): any
 }
 
 // noop :: ...a -> Void
-const noop = (..._: any[]): void => {
+const noop = (..._: any): void => {
   return undefined
 }
 

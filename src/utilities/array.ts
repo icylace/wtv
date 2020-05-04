@@ -1,65 +1,65 @@
 // import { zip } from "/web_modules/ramda.js"
 
-const append = (x: any) => (xs: any[]): any[] => {
+const append = <T>(x: T) => (xs: T[]): T[] => {
   return [...xs, x]
 }
 
-const any = (f: (a: any) => boolean) => (xs: any[]): boolean => {
+const any = <T>(f: (a: T) => boolean) => (xs: T[]): boolean => {
   return xs.some (f)
 }
 
 // https://stackoverflow.com/a/43455982
-const concat = (xss: any[][]): any[] => {
+const concat = <T>(xss: T[][]): T[] => {
   // @ts-ignore
   return [].concat (...xss)
 }
 
-const exclude = (i: number) => (xs: any[]): any[] => {
+const exclude = (i: number) => <T>(xs: T[]): T[] => {
   return [...xs.slice (0, i), ...xs.slice (i + 1)]
 }
 
-const filter = (f: (a: any) => boolean) => (xs: any[]): any[] => {
+const filter = <T>(f: (a: T) => boolean) => (xs: T[]): T[] => {
   return xs.filter (f)
 }
 
-const findIndex = (f: (a: any) => boolean) => (xs: any[]): number => {
+const findIndex = <T>(f: (a: T) => boolean) => (xs: T[]): number => {
   return xs.findIndex (f)
 }
 
 // flatten :: [[a]] -> [a]
-const flatten = (xs: { flat: () => any[] }): any[] => {
+const flatten = <T>(xs: { flat: () => T[] }): T[] => {
   return xs.flat ()
 }
 
-const head = (xs: any[]): any => {
+const head = <T>(xs: T[]): T => {
   return xs[0]
 }
 
-const init = (xs: any[]): any[] => {
+const init = <T>(xs: T[]): T[] => {
   return xs.slice (0, -1)
 }
 
-const intercalate = (x: any) => (xs: any[]): string => {
+const intercalate = <T>(x: T) => (xs: T[]): string => {
   return xs.join (x)
 }
 
-const isArray = (x: any): boolean => {
+const isArray = <T>(x: T): boolean => {
   return Array.isArray (x)
 }
 
 // last :: [a] -> Maybe a
-const last = (xs: any[]): any => {
+const last = <T>(xs: T[]): T => {
   return xs.slice (-1)[0]
 }
 
 // map :: (a -> b) -> [a] -> [b]
-const map = (f: (a: any) => any) => (xs: any[]): any[] => {
+const map = <T, U>(f: (a: T) => U) => (xs: T[]): U[] => {
   return xs.map (f)
 }
 
 // mapWithIndex :: (a -> Int -> b) -> [a] -> [b]
 const mapWithIndex = (f: Function) => (xs: any[]): any[] => {
-  return xs.map ((x: any, i: number) => f (x) (i))
+  return xs.map ((x: any, i: number): any => f (x) (i))
 }
 
 const prepend = (x: any) => (xs: any[]): any[] => {
@@ -70,11 +70,11 @@ const range = (m: number) => (n: number): number[] => {
   return [...Array (n - m)].map ((_, i) => m + i)
 }
 
-const reject = (f: (a: any) => boolean) => (xs: any[]): any[] => {
-  return xs.filter ((x: any) => !f (x))
+const reject = <T>(f: (a: T) => boolean) => (xs: T[]): T[] => {
+  return xs.filter ((x: T): boolean => !f (x))
 }
 
-const repeat = (x: any) => (n: number): any[] => {
+const repeat = <T>(x: T) => (n: number): T[] => {
   return Array (n).fill (x)
 }
 
@@ -82,11 +82,11 @@ const numberSequence = (n: number): number[] => {
   return [...Array (n).keys ()]
 }
 
-const tail = (xs: any[]): any[] => {
+const tail = <T>(xs: T[]): T[] => {
   return xs.slice (1)
 }
 
-const uniques = (xs: any[]): any[] => {
+const uniques = <T>(xs: T[]): T[] => {
   return [...new Set (xs)]
 }
 

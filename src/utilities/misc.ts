@@ -1,17 +1,17 @@
 import { h } from "hyperapp"
-import { get } from "./lens"
+import { get } from "./shadesHelper"
 
-const isNil = (x: any): boolean => {
+const isNil = <T>(x: T): boolean => {
   return x == null
 }
 
-const isSomething = (x: any): boolean => {
+const isSomething = <T>(x: T): boolean => {
   return x != null
 }
 
 // -----------------------------------------------------------------------------
 
-const readoutReplacer = (_key: any, value: any): any => {
+const readoutReplacer = <T, U>(_key: T, value: U): U | string => {
   return typeof value === "function" ? "function" : value
 }
 

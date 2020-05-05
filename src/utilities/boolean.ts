@@ -1,4 +1,4 @@
-const asBool = (x: any): boolean => {
+const asBool = <T>(x: T): boolean => {
   return !!x
 }
 

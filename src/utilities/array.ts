@@ -26,8 +26,7 @@ const findIndex = <T>(f: (a: T) => boolean) => (xs: T[]): number => {
   return xs.findIndex (f)
 }
 
-// flatten :: [[a]] -> [a]
-const flatten = <T>(xs: { flat: () => T[] }): T[] => {
+const flatten = <T>(xs: T[][]): T[] => {
   return xs.flat ()
 }
 
@@ -39,7 +38,7 @@ const init = <T>(xs: T[]): T[] => {
   return xs.slice (0, -1)
 }
 
-const intercalate = <T>(x: T) => (xs: T[]): string => {
+const intercalate = (x: string) => <T>(xs: T[]): string => {
   return xs.join (x)
 }
 
@@ -58,11 +57,11 @@ const map = <T, U>(f: (a: T) => U) => (xs: T[]): U[] => {
 }
 
 // mapWithIndex :: (a -> Int -> b) -> [a] -> [b]
-const mapWithIndex = (f: Function) => (xs: any[]): any[] => {
-  return xs.map ((x: any, i: number): any => f (x) (i))
+const mapWithIndex = <T, U>(f: (a: T) => (b: number) => U) => (xs: T[]): U[] => {
+  return xs.map ((x: T, i: number): U => f (x) (i))
 }
 
-const prepend = (x: any) => (xs: any[]): any[] => {
+const prepend = <T>(x: T) => (xs: T[]): T[] => {
   return [x, ...xs]
 }
 

@@ -8,13 +8,13 @@ const always = <T, U>(x: T) => (_: U): T => {
 
 // Bluebird
 // compose :: (a -> b) -> (c -> a) -> c -> b
-const compose = (f: (a: any) => any) => (g: (c: any) => any) => (x: any): any => {
+const compose = <T, U, V>(f: (a: T) => U) => (g: (c: V) => T) => (x: V): U => {
   return f (g (x))
 }
 
 // Blackbird
 // compose2 :: (a -> b) -> (c -> d -> a) -> c -> d -> b
-const compose2 = (f: (a: any) => any) => (g: (c: any) => (d: any) => any) => (x: any) => (y: any): any => {
+const compose2 = <T, U, V, X>(f: (a: T) => U) => (g: (c: V) => (d: X) => T) => (x: V) => (y: X): U => {
   return f (g (x) (y))
 }
 
@@ -27,22 +27,22 @@ const identity = <T>(x: T): T => {
 // -----------------------------------------------------------------------------
 
 // ifElse :: (a -> Bool) -> (a -> b) -> (a -> b) -> a -> b
-const ifElse = (predicate: (a: any) => boolean) => (f: (a: any) => any) => (g: (a: any) => any) => (x: any): any => {
+const ifElse = <T, U>(predicate: (a: T) => boolean) => (f: (a: T) => U) => (g: (a: T) => U) => (x: T): U => {
   return predicate (x) ? f (x) : g (x)
 }
 
 // ifExists :: (Nullable a, Nullable b) => (a -> b) -> a -> b
-const ifExists = (f: (a: any) => any) => (x: any): any => {
+const ifExists = <T, U>(f: (a: T) => U) => (x: T): U | null => {
   return x != null ? f (x) : null
 }
 
 // ifThen :: (a, Nullable b) => (a -> Bool) -> (a -> b) -> a -> b | null
-const ifThen = (f: (a: any) => boolean) => (g: (a: any) => any) => (x: any): any => {
+const ifThen = <T, U>(f: (a: T) => boolean) => (g: (a: T) => U) => (x: T): U | null => {
   return f (x) ? g (x) : null
 }
 
-// noop :: ...a -> Void
-const noop = (..._: any): void => {
+// noop :: a -> Void
+const noop = <T>(_: T): void => {
   return undefined
 }
 
@@ -52,7 +52,7 @@ const pipe = (fs: Function[]) => (x: any): any => {
 }
 
 // tap :: (a -> Void) -> a -> a
-const tap = (f: (a: any) => any) => (x: any): any => {
+const tap = <T, U>(f: (a: T) => U) => (x: T): T => {
   f (x)
   return x
 }
@@ -63,7 +63,7 @@ const toggle = (cond: boolean) => (f: () => any) => (g: () => any): any => {
 }
 
 // uncurry2 :: (a -> b -> c) -> (a, b) -> c
-const uncurry2 = (f: (a: any) => (b: any) => any) => (x: any, y: any): any => {
+const uncurry2 = <T, U, V>(f: (a: T) => (b: U) => V) => (x: T, y: U): V => {
   return f (x) (y)
 }
 

@@ -14,34 +14,35 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    // "plugin:@typescript-eslint/eslint-recommended",
+    // "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "standard",
   ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "prettier"],
+  // parser: "@typescript-eslint/parser",
+  // plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["prettier"],
   parserOptions: {
     ecmaVersion: 2018,
     project: "./tsconfig.json",
     sourceType: "module",
   },
-  settings: {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
-    },
-    "import/resolver": {
-      typescript: {},
-    },
-  },
+  // settings: {
+  //   "import/parsers": {
+  //     "@typescript-eslint/parser": ["".ts", ".tsx"],
+  //   },
+  //   "import/resolver": {
+  //     typescript: {},
+  //   },
+  // },
   rules: {
     "array-bracket-newline": ["error", "consistent"],
     // "array-bracket-spacing": [ "error", "always" ],
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
     "comma-dangle": [
       "error",
       {
@@ -98,16 +99,16 @@ module.exports = {
     ],
     quotes: ["error", "double"],
 
-    "import/no-extraneous-dependencies": ["error", { devDependencies: ["**/test.tsx", "**/test.ts"] }],
+    // "import/no-extraneous-dependencies": ["error", { devDependencies: ["**/test.tsx", "**/test.ts"] }],
 
-    "@typescript-eslint/no-explicit-any": ["off", { ignoreRestArgs: false }],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-      },
-    ],
+    // "@typescript-eslint/no-explicit-any": ["off", { ignoreRestArgs: false }],
+    // "@typescript-eslint/no-unused-vars": [
+    //   "error",
+    //   {
+    //     argsIgnorePattern: "^_",
+    //     varsIgnorePattern: "^_",
+    //   },
+    // ],
     // "@typescript-eslint/indent": [2, 2],
   },
 }

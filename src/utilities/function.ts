@@ -1,5 +1,5 @@
-// export { compose, flip, ifDo, ifElse, ifThen, noop, pipe, tap, where }
-export { compose, flip, ifElse, ifThen, noop, pipe, tap, where }
+// export { compose, flip, ifDo, ifElse, ifThen, noop, pipe, tap, using, where }
+export { compose, flip, ifElse, ifThen, noop, pipe, tap, using, where }
 
 // -----------------------------------------------------------------------------
 
@@ -40,6 +40,10 @@ const pipe = (...fs: Function[]) => (x: any): any =>
 // tap :: (a -> Void) -> a -> a
 const tap = <a>(f: (_: a) => void) => (x: a): a =>
   (f(x), x)       // eslint-disable-line
+
+// using :: [(a -> b) | b] -> a -> [b]
+const using = <a, b>(fs: (((_: a) => b) | b)[]) => (x: a): b[] =>
+  fs.map((f) => typeof f === "function" ? (f as ((_: a) => b))(x) : f)
 
 // https://hyperapp.slack.com/archives/C41ECC0V6/p1596469423373000
 const where = (f: Function): any =>

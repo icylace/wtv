@@ -1,22 +1,47 @@
 {
   "name": "wtv",
   "version": "0.0.0",
-  "description": "Whatever...  ¯\\_(ツ)_/¯",
-  "main": "./dist/index.js",
+  "description": "Whatever... ¯\\_(ツ)_/¯",
+  "keywords": [
+    "wtv"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/icylace/wtv",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icylace/wtv.git"
   },
-  "author": "Ron Martinez <ramartin.net@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/icylace/wtv/issues"
+  "bugs": "https://github.com/icylace/wtv/issues",
+  "author": {
+    "name": "Ron Martinez",
+    "email": "ramartin.net@gmail.com",
+    "url": "https://ramartin.net/"
   },
-  "homepage": "https://github.com/icylace/wtv#readme",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "browser": "./dist/index.esm.js",
+  "unpkg": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build:dev": "./task.sh build:dev",
+    "build:prod": "./task.sh build:prod",
+    "check": "./task.sh check",
+    "clean": "./task.sh clean",
+    "lint": "./task.sh lint",
+    "reinstall": "./task.sh reinstall",
+    "reset": "./task.sh reset",
+    "test": "./task.sh test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "eslint": "^8.13.0",
     "fast-check": "^2.24.0",
     "jest": "^27.5.1",
@@ -24,19 +49,5 @@
     "terser": "^5.12.1",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
-  },
-  "scripts": {
-    "build:dev": "./task.sh build:dev",
-    "build:prod": "./task.sh build:prod",
-    "clean": "./task.sh clean",
-    "lint": "./task.sh lint",
-    "lint:fix": "./task.sh lint:fix",
-    "lint:fix-dry-run": "./task.sh lint:fix-dry-run",
-    "prepare": "./task.sh prepare",
-    "test": "./task.sh test",
-    "typecheck": "./task.sh typecheck",
-    "watch:postcss": "./task.sh watch:postcss",
-    "watch:rollup": "./task.sh watch:rollup",
-    "watch:typescript": "./task.sh watch:typescript"
   }
 }

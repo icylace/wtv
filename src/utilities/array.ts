@@ -22,6 +22,7 @@ export {
   numberSequence,
   tail,
   uniques,
+  using,
   // zipLongest,
 }
 
@@ -120,6 +121,10 @@ const tail = <a>(xs: a[]): a[] =>
 // uniques :: [a] -> [a]
 const uniques = <a>(xs: a[]): a[] =>
   [...new Set(xs)]
+
+// using :: [(a -> b) | b] -> a -> [b]
+const using = <a, b>(fs: (((_: a) => b) | b)[]) => (x: a): b[] =>
+  fs.map((f) => typeof f === "function" ? (f as ((_: a) => b))(x) : f)
 
 // -----------------------------------------------------------------------------
 

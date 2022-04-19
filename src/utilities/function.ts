@@ -4,7 +4,7 @@ export { compose, flip, ifElse, ifThen, noop, pipe, tap, where }
 // -----------------------------------------------------------------------------
 
 // compose :: (a -> b) -> a -> b
-const compose = (...fs: Function[]) => (x: unknown): unknown =>
+const compose = (...fs: readonly Function[]) => (x: unknown): unknown =>
   fs.reduceRight((acc, f) => f(acc), x)
 
 // flip :: (b -> a -> c) -> a -> b -> c
@@ -34,7 +34,7 @@ const ifThen = <a, b>
 const noop = () => {}
 
 // pipe :: [(a -> b)] -> a -> b
-const pipe = (...fs: Function[]) => (x: any): any =>
+const pipe = (...fs: readonly Function[]) => (x: any): any =>
   fs.reduce((acc, f) => f(acc), x)
 
 // tap :: (a -> Void) -> a -> a

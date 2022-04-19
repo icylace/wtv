@@ -33,69 +33,69 @@ const allocate = (x: number): undefined[] =>
   Array.from({ length: x })
 
 // append :: a -> [a] -> [a]
-const append = <a>(x: a) => (xs: a[]): a[] =>
+const append = <a>(x: a) => (xs: readonly a[]): a[] =>
   [...xs, x]
 
 // any :: (a -> Bool) -> [a] -> boolean
-const any = <a>(f: (_: a) => boolean) => (xs: a[]): boolean =>
+const any = <a>(f: (_: a) => boolean) => (xs: readonly a[]): boolean =>
   xs.some(f)
 
 // assign :: a -> Int -> [a] -> [a]
-const assign = <a>(value: a) => (i: number) => (xs: a[]): a[] =>
+const assign = <a>(value: a) => (i: number) => (xs: readonly a[]): a[] =>
   [...xs.slice(0, i), value, ...xs.slice(i + 1)]
 
 // concat :: [[a]] -> [a]
-const concat = <a>(xss: a[][]): a[] =>
+const concat = <a>(xss: readonly a[][]): a[] =>
   ([] as a[]).concat(...xss)
 // TODO:
 // // const concat = (xs) => xs.flat()
 // // flatten :: [[a]] -> [a]
-// function flatten<A>(xs: A[][]): A[]
+// function flatten<A>(xs: readonly A[][]): A[]
 // // const flatten = (xs) => xs.flat()
 
 // encase :: a | a[] -> a[]
-const encase = <a>(x: a | a[]): a[] =>
+const encase = <a>(x: a | readonly a[]): a[] =>
   Array.isArray(x) ? x : [x]
 
 // exclude :: Int -> [a] -> [a]
-const exclude = (i: number) => <a>(xs: a[]): a[] =>
+const exclude = (i: number) => <a>(xs: readonly a[]): a[] =>
   [...xs.slice(0, i), ...xs.slice(i + 1)]
 
 // filter :: (a -> Bool) -> [a] -> [a]
-const filter = <a>(f: (_: a) => boolean) => (xs: a[]): a[] =>
+const filter = <a>(f: (_: a) => boolean) => (xs: readonly a[]): a[] =>
   xs.filter(f)
 
 // findIndex :: (a -> Bool) -> [a] -> Int
-const findIndex = <a>(f: (_: a) => boolean) => (xs: a[]): number =>
+const findIndex = <a>(f: (_: a) => boolean) => (xs: readonly a[]): number =>
   xs.findIndex(f)
 
 // head :: [a] -> Maybe a
-const head = <a>(xs: a[]): a | null =>
+const head = <a>(xs: readonly a[]): a | null =>
   xs[0]
 
 // init :: [a] -> [a]
-const init = <a>(xs: a[]): a[] =>
+const init = <a>(xs: readonly a[]): a[] =>
   xs.slice(0, -1)
 
 // intercalate :: String -> [a] -> String
-const intercalate = (x: string) => <a>(xs: a[]): string =>
+const intercalate = (x: string) => <a>(xs: readonly a[]): string =>
   xs.join(x)
 
 // isArray :: a -> Bool
 const isArray = Array.isArray
 
 // last :: [a] -> Maybe a
-const last = <a>(xs: a[]): a | null =>
+const last = <a>(xs: readonly a[]): a | null =>
   xs[xs.length - 1]
 // const last_ = <a>(xs: a[]): a | null =>
 //   xs.slice(-1)[0]
 
 // map :: (a -> b) -> [a] -> [b]
-const map = <a, b>(f: (_: a) => b) => (xs: a[]): b[] =>
+const map = <a, b>(f: (_: a) => b) => (xs: readonly a[]): b[] =>
   xs.map(f)
 
 // prepend :: a -> [a] -> [a]
-const prepend = <a>(x: a) => (xs: a[]): a[] =>
+const prepend = <a>(x: a) => (xs: readonly a[]): a[] =>
   [x, ...xs]
 
 // range :: Int -> Int -> [Int]
@@ -103,7 +103,7 @@ const range = (m: number) => (n: number): number[] =>
   [...Array(n - m)].map((_, i) => m + i)
 
 // reject :: (a -> Bool) -> [a] -> [a]
-const reject = <a>(f: (_: a) => boolean) => (xs: a[]): a[] =>
+const reject = <a>(f: (_: a) => boolean) => (xs: readonly a[]): a[] =>
   xs.filter((x) => !f(x))
 
 // repeat :: a -> Int -> [a]
@@ -115,15 +115,15 @@ const numberSequence = (n: number): number[] =>
   [...Array(n).keys()]
 
 // tail :: [a] -> [a]
-const tail = <a>(xs: a[]): a[] =>
+const tail = <a>(xs: readonly a[]): a[] =>
   xs.slice(1)
 
 // uniques :: [a] -> [a]
-const uniques = <a>(xs: a[]): a[] =>
+const uniques = <a>(xs: readonly a[]): a[] =>
   [...new Set(xs)]
 
 // using :: [(a -> b) | b] -> a -> [b]
-const using = <a, b>(fs: (((_: a) => b) | b)[]) => (x: a): b[] =>
+const using = <a, b>(fs: readonly (((_: a) => b) | b)[]) => (x: a): b[] =>
   fs.map((f) => typeof f === "function" ? (f as ((_: a) => b))(x) : f)
 
 // -----------------------------------------------------------------------------

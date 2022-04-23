@@ -86,7 +86,6 @@ task:reinstall() {
 
   rm ./package-lock.json
   rm -fr ./node_modules
-  rm -fr ./output
 
   update_json '.dependencies = {} | .devDependencies = {}' ./package.json
 

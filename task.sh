@@ -44,14 +44,14 @@ task:build() {
 
   echo
   echo "Generating types definition file..."
-  npx tsup ./src/lib/eyepiece.ts --dts-only
-  # npx tsup ./src/lib/eyepiece.ts --dts-only --legacy-output
+  npx tsup ./src/lib/wtv.ts --dts-only
+  # npx tsup ./src/lib/wtv.ts --dts-only --legacy-output
   # https://github.com/vitejs/vite/issues/3461#issuecomment-857125201
 
   echo
   echo "Minifying and gzipping ES modules..."
-  npx terser --ecma 6 --compress --mangle --module --output ./dist/eyepiece.es.min.js -- ./dist/eyepiece.es.js
-  gzip --best --to-stdout ./dist/eyepiece.es.min.js > ./dist/eyepiece.es.min.js.gz
+  npx terser --ecma 6 --compress --mangle --module --output ./dist/wtv.es.min.js -- ./dist/wtv.es.js
+  gzip --best --to-stdout ./dist/wtv.es.min.js > ./dist/wtv.es.min.js.gz
 }
 
 # ------------------------------------------------------------------------------

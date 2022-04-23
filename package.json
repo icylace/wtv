@@ -20,18 +20,18 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
-  "browser": "./dist/index.esm.js",
-  "unpkg": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/wtv.es.js",
+  "browser": "./dist/wtv.es.js",
+  "unpkg": "./dist/wtv.es.js",
+  "module": "./dist/wtv.es.js",
+  "types": "./dist/wtv.d.ts",
   "scripts": {
-    "build:dev": "./task.sh build:dev",
-    "build:prod": "./task.sh build:prod",
+    "build": "./task.sh build",
     "check": "./task.sh check",
     "clean": "./task.sh clean",
     "lint": "./task.sh lint",
     "reinstall": "./task.sh reinstall",
+    "release": "./task.sh release",
     "reset": "./task.sh reset",
     "test": "./task.sh test"
   },

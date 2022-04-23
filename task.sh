@@ -16,11 +16,9 @@ update_json() {
 
 task:index() {
   local tasks=(
-    'build:dev'
-    'build:prod'
+    'build'
     'check'
     'clean'
-    'clean:all'
     'lint'
     'reinstall'
     'release'
@@ -37,60 +35,23 @@ task:index() {
 
 # ------------------------------------------------------------------------------
 
-task:build:dev() {
-  task:clean
-
-  echo
-  echo "Compiling TypeScript for development..."
-  npx tsc --build
-
-  # Exit if errors found.
-  [ $? != 0 ] && return
-
-  npx rollup --config
-
-  echo
-  echo "Copying compiled JavaScript to the distribution folder..."
-  # https://stackoverflow.com/a/1313688/1935675
-  rsync --archive ./output/typescript/ ./dist --exclude=tsconfig.tsbuildinfo
-
-  # echo
-  # echo "Compiling CSS for development..."
-  # npx postcss ./src/index.css --output ./dist/index.css
-}
-
-# ------------------------------------------------------------------------------
-
-task:build:prod() {
+task:build() {
   task:clean
 
   echo
   echo "Compiling TypeScript for production..."
-  npx tsc --build --incremental false
-
-  # Exit if errors found.
-  [ $? != 0 ] && return
-
-  npx rollup --config --environment prod
+  npx vite build
 
   echo
-  echo "Copying compiled JavaScript to the distribution folder..."
-  # https://stackoverflow.com/a/1313688
-  rsync --archive ./output/typescript/ ./dist --exclude=tsconfig.tsbuildinfo
-
-  # echo
-  # echo "Compiling CSS for production..."
-  # npx postcss ./src/index.css --output ./dist/index.css --env prod
+  echo "Generating types definition file..."
+  npx tsup ./src/lib/eyepiece.ts --dts-only
+  # npx tsup ./src/lib/eyepiece.ts --dts-only --legacy-output
+  # https://github.com/vitejs/vite/issues/3461#issuecomment-857125201
 
   echo
   echo "Minifying and gzipping ES modules..."
-  npx terser --ecma 6 --compress --mangle --module --output ./dist/index.esm.min.js -- ./dist/index.esm.js
-  gzip --best --to-stdout ./dist/index.esm.min.js > ./dist/index.esm.min.js.gz
-
-  # echo
-  # echo "Minifying and gzipping UMD modules..."
-  # npx terser --ecma 6 --compress --mangle --output ./dist/index.umd.min.js -- ./dist/index.umd.js
-  # gzip --best --to-stdout ./dist/index.umd.min.js > ./dist/index.umd.min.js.gz
+  npx terser --ecma 6 --compress --mangle --module --output ./dist/eyepiece.es.min.js -- ./dist/eyepiece.es.js
+  gzip --best --to-stdout ./dist/eyepiece.es.min.js > ./dist/eyepiece.es.min.js.gz
 }
 
 # ------------------------------------------------------------------------------
@@ -106,16 +67,7 @@ task:check() {
 task:clean() {
   echo
   echo "Cleaning the distribution folder..."
-  rm -fr ./dist && mkdir ./dist
-}
-
-# ------------------------------------------------------------------------------
-
-task:clean:all() {
-  task:clean
-  echo
-  echo "Cleaning the intermiediary output folder..."
-  rm -fr ./output && mkdir ./output
+  rm -fr ./dist
 }
 
 # ------------------------------------------------------------------------------
@@ -143,6 +95,7 @@ task:reinstall() {
   # Language
   dev_modules+=('typescript')
   dev_modules+=('terser')
+  dev_modules+=('tsup')
 
   # Linting
   dev_modules+=('eslint')
@@ -166,6 +119,7 @@ task:reinstall() {
 
   # Building
   dev_modules+=('rollup')
+  dev_modules+=('vite')
 
   npm install --save-dev "${dev_modules[@]}"
 }
@@ -174,8 +128,7 @@ task:reinstall() {
 
 # https://github.com/sindresorhus/np#release-script
 task:release() {
-  task:build:prod
-
+  task:build
   echo
   echo "Releasing..."
   np --no-2fa
@@ -190,36 +143,9 @@ task:reset() {
 
 # ------------------------------------------------------------------------------
 
-# TODO:
-
 task:test() {
-  return
-  # npx jest
+  npx jest
 }
-
-# ------------------------------------------------------------------------------
-
-# task:watch:postcss() {
-#   echo
-#   echo "Watching PostCSS..."
-#   npx postcss ./src/index.css --output ./dist/index.css --watch
-# }
-
-# ------------------------------------------------------------------------------
-
-# task:watch:rollup() {
-#   echo
-#   echo "Watching Rollup..."
-#   npx rollup --config --watch
-# }
-
-# ------------------------------------------------------------------------------
-
-# task:watch:typescript() {
-#   echo
-#   echo "Watching TypeScript..."
-#   npx tsc --watch
-# }
 
 # ------------------------------------------------------------------------------
 

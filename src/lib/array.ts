@@ -8,7 +8,6 @@ export {
   exclude,
   filter,
   findIndex,
-  // flatten,
   head,
   init,
   intercalate,
@@ -23,7 +22,8 @@ export {
   tail,
   uniques,
   using,
-  // zipLongest,
+  zip,
+  zipLongest,
 }
 
 // -----------------------------------------------------------------------------
@@ -47,11 +47,6 @@ const assign = <a>(value: a) => (i: number) => (xs: readonly a[]): a[] =>
 // concat :: [[a]] -> [a]
 const concat = <a>(xss: readonly a[][]): a[] =>
   ([] as a[]).concat(...xss)
-// TODO:
-// // const concat = (xs) => xs.flat()
-// // flatten :: [[a]] -> [a]
-// function flatten<A>(xs: readonly A[][]): A[]
-// // const flatten = (xs) => xs.flat()
 
 // encase :: a | a[] -> a[]
 const encase = <a>(x: a | readonly a[]): a[] =>
@@ -126,22 +121,32 @@ const uniques = <a>(xs: readonly a[]): a[] =>
 const using = <a, b>(fs: readonly (((_: a) => b) | b)[]) => (x: a): b[] =>
   fs.map((f) => typeof f === "function" ? (f as ((_: a) => b))(x) : f)
 
-// -----------------------------------------------------------------------------
+// https://github.com/ramda/ramda/blob/v0.28.0/source/zip.js
+// https://github.com/remeda/remeda/blob/master/src/zip.ts
+//
+// zip :: [a] -> [b] -> [(a, b)]
+const zip = <a>(xs: readonly a[]) => <b>(ys: readonly b[]): [a, b][] => {
+  const length = xs.length > ys.length ? ys.length : xs.length
+  const result: [a, b][] = []
+  for (let i = 0; i < length; ++i) {
+    result.push([xs[i], ys[i]])
+  }
+  return result
+}
 
-// import { zip } from "ramda"
-
-// //
-// // Zips all items from two lists using `undefined` for any missing items.
-// //
-// // Based on:
-// // https://github.com/ramda/ramda/wiki/Cookbook#ziplongest-zip-lists-to-the-longest-lists-length
-// //
-// const zipLongest = (xs) => (ys) => {
-//   if (xs.length < ys.length) {
-//     return zip(concat([xs, repeat(undefined)(ys.length - xs.length)]))(ys)
-//   }
-//   if (ys.length < xs.length) {
-//     return zip(xs)(concat([ys, repeat(undefined)(xs.length - ys.length)]))
-//   }
-//   return zip(xs)(ys)
-// }
+// Zips all items from two lists using `undefined` for any missing items.
+//
+// Based on:
+// https://github.com/ramda/ramda/wiki/Cookbook#ziplongest-zip-lists-to-the-longest-lists-length
+// https://github.com/ramda/ramda/blob/v0.28.0/source/zip.js
+// https://github.com/remeda/remeda/blob/master/src/zip.ts
+//
+// zipLongest :: [a] -> [b] -> [(a | undefined, b | undefined)]
+const zipLongest = <a>(xs: readonly a[]) => <b>(ys: readonly b[]): [a, b][] => {
+  const length = xs.length > ys.length ? xs.length : ys.length
+  const result: [a, b][] = []
+  for (let i = 0; i < length; ++i) {
+    result.push([xs[i], ys[i]])
+  }
+  return result
+}

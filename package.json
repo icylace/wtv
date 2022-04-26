@@ -20,7 +20,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/wtv.es.js",
+  "main": "./dist/wtv.umd.js",
   "browser": "./dist/wtv.es.js",
   "unpkg": "./dist/wtv.es.js",
   "module": "./dist/wtv.es.js",

@@ -25,6 +25,12 @@
   "unpkg": "./dist/wtv.es.js",
   "module": "./dist/wtv.es.js",
   "types": "./dist/wtv.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/wtv.es.js",
+      "require": "./dist/wtv.umd.js"
+    }
+  },
   "scripts": {
     "build": "./task.sh build",
     "check": "./task.sh check",

@@ -89,6 +89,10 @@ const last = <a>(xs: readonly a[]): a | null =>
 const map = <a, b>(f: (_: a) => b) => (xs: readonly a[]): b[] =>
   xs.map(f)
 
+// numberSequence :: Int -> [Int]
+const numberSequence = (n: number): number[] =>
+  [...Array(n).keys()]
+
 // prepend :: a -> [a] -> [a]
 const prepend = <a>(x: a) => (xs: readonly a[]): a[] =>
   [x, ...xs]
@@ -104,10 +108,6 @@ const reject = <a>(f: (_: a) => boolean) => (xs: readonly a[]): a[] =>
 // repeat :: a -> Int -> [a]
 const repeat = <a>(x: a) => (n: number): a[] =>
   Array(n).fill(x)
-
-// numberSequence :: Int -> Int[]
-const numberSequence = (n: number): number[] =>
-  [...Array(n).keys()]
 
 // tail :: [a] -> [a]
 const tail = <a>(xs: readonly a[]): a[] =>

@@ -21,7 +21,6 @@ export {
   numberSequence,
   tail,
   uniques,
-  using,
   zip,
   zipLongest,
 }
@@ -116,10 +115,6 @@ const tail = <a>(xs: readonly a[]): a[] =>
 // uniques :: [a] -> [a]
 const uniques = <a>(xs: readonly a[]): a[] =>
   [...new Set(xs)]
-
-// using :: [(a -> b) | b] -> a -> [b]
-const using = <a, b>(fs: readonly (((_: a) => b) | b)[]) => (x: a): b[] =>
-  fs.map((f) => typeof f === "function" ? (f as ((_: a) => b))(x) : f)
 
 // https://github.com/ramda/ramda/blob/v0.28.0/source/zip.js
 // https://github.com/remeda/remeda/blob/master/src/zip.ts

@@ -19,6 +19,7 @@ export {
   repeat,
   numberSequence,
   tail,
+  transpose,
   uniques,
   zip,
   zipLongest,
@@ -87,6 +88,24 @@ const repeat = <a>(x: a) => (n: number): a[] =>
 
 const tail = <a>(xs: readonly a[]): a[] =>
   xs.slice(1)
+
+// Transposes the rows and columns of a 2D list. When passed a list of `n` lists
+// of length `x`, returns a list of `x` lists of length `n`.
+//
+// https://github.com/ramda/ramda/blob/v0.28.0/source/transpose.js
+const transpose = <a>(xs: a[][]): a[][] => {
+  const result: a[][] = []
+  for (let i = 0; i < xs.length; ++i) {
+    const ys = xs[i]
+    for (let j = 0; j < ys.length; ++j) {
+      if (typeof result[j] === "undefined") {
+        result[j] = []
+      }
+      result[j].push(ys[j])
+    }
+  }
+  return result
+}
 
 const uniques = <a>(xs: readonly a[]): a[] =>
   [...new Set(xs)]

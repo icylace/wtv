@@ -2,15 +2,12 @@ export { dialDown, dialUp, dice, reifiedNumber, sanitizedNumber, toInt }
 
 // -----------------------------------------------------------------------------
 
-// dialDown :: Int -> Int -> Int
 const dialDown = (range: number) => (x: number): number =>
   (x + range - 1) % range
 
-// dialUp :: Int -> Int -> Int
 const dialUp = (range: number) => (x: number): number =>
   (x + 1) % range
 
-// dice :: Int -> Int -> Int
 const dice = (min: number) => (max: number): number =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
@@ -28,7 +25,6 @@ const dice = (min: number) => (max: number): number =>
 // console.log("/////////////////")
 // console.log("/////////////////")
 
-// reifiedNumber :: Int | String -> Int | String
 const reifiedNumber = (x: number | string): number | string =>
   typeof x === "string"
     ? x === Number.parseInt(x, 10).toString(10)
@@ -46,10 +42,8 @@ const reifiedNumber = (x: number | string): number | string =>
 
 /* eslint-enable eqeqeq */
 
-// sanitizedNumber :: String -> Int
 const sanitizedNumber = (x: string): number =>
   Math.max(0, toInt(x))
 
-// toInt :: String -> Int
 const toInt = (x: string): number =>
   Number.parseInt(x, 10)

@@ -1,5 +1,5 @@
-export type { Want }
+export type { Nullable }
 
 // -----------------------------------------------------------------------------
 
-type Want<a> = a | null | undefined
+type Nullable<a> = a | null | undefined

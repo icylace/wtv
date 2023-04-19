@@ -1,5 +1,1 @@
-export type { Nullable }
-
-// -----------------------------------------------------------------------------
-
-type Nullable<a> = a | null | undefined
+export type Nullable<a> = a | null | undefined

@@ -1,6 +1,1 @@
-export { toBool }
-
-// -----------------------------------------------------------------------------
-
-const toBool = <a>(x: a): boolean =>
-  !!x
+export const toBool = <a>(x: a): boolean => !!x

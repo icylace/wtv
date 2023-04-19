@@ -28,7 +28,6 @@
     "alwaysStrict": true,                     /* Parse in strict mode and emit "use strict" for each source file. */
 
     /* Additional Checks */
-    "importsNotUsedAsValues": "error",
     "noUnusedLocals": true,                   /* Report errors on unused locals. */
     "noUnusedParameters": true,               /* Report errors on unused parameters. */
     "noImplicitReturns": true,                /* Report error when not all code paths in function return a value. */
@@ -44,6 +43,9 @@
 
     "assumeChangesOnlyAffectDirectDependencies": true,    /* https://www.typescriptlang.org/v2/en/tsconfig#assumeChangesOnlyAffectDirectDependencies */
     "noEmitOnError": true,                    /* https://www.typescriptlang.org/tsconfig#noEmitOnError */
-    "resolveJsonModule": true                 /* https://www.typescriptlang.org/tsconfig#resolveJsonModule */
+    "resolveJsonModule": true,                /* https://www.typescriptlang.org/tsconfig#resolveJsonModule */
+
+    "allowImportingTsExtensions": true,    /* https://www.typescriptlang.org/tsconfig#allowImportingTsExtensions*/
+    "noEmit": true                         /* https://www.typescriptlang.org/tsconfig#noEmit */
   }
 }

@@ -111,10 +111,15 @@ task:reinstall() {
   # dev_modules+=('eslint-import-resolver-typescript')
 
   # Testing
-  dev_modules+=('jest')
-  dev_modules+=('@types/jest')
-  dev_modules+=('ts-jest')
-  dev_modules+=('fast-check')
+  # dev_modules+=('jest')
+  # dev_modules+=('@types/jest')
+  # dev_modules+=('ts-jest')
+  # dev_modules+=('fast-check')
+
+  # Vitest
+  # A Vite-native unit test framework. It's fast!
+  # https://vitest.dev/
+  dev_modules+=('vitest')
 
   # Building
   dev_modules+=('rollup')
@@ -143,9 +148,7 @@ task:reset() {
 # ------------------------------------------------------------------------------
 
 task:test() {
-  # TODO:
-  return
-  # npx jest
+  npx vitest
 }
 
 # ------------------------------------------------------------------------------

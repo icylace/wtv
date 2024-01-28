@@ -33,8 +33,10 @@ export const pipe = (...fs: readonly Function[]) => (x: any): any =>
   fs.reduce((acc, f) => f(acc), x)
 
 // tap :: (a -> Void) -> a -> a
-export const tap = <a>(f: (_: a) => void) => (x: a): a =>
-  (f(x), x)       // eslint-disable-line
+export const tap = <a>(f: (_: a) => void) => (x: a): a => {
+  f(x)
+  return x
+}
 
 // using :: [(a -> b) | b] -> a -> [b]
 export const using = <a, b>(fs: readonly (((_: a) => b) | b)[]) => (x: a): b[] =>

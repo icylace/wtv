@@ -4,12 +4,12 @@ export const clamp = (min: number, max: number, x: number): number => {
   return x
 }
 
-export const inside = (min: number, max: number, x: number): number | null => {
+export const within = (min: number, max: number, x: number): number | null => {
   return min <= x && x <= max ? x : null
 }
 
 export const normalize = (min: number, max: number, x: number): number => {
-  if (min == max) return 1.0
+  if (min === max) return 1.0
   return (x - min) / (max - min)
 }
 
